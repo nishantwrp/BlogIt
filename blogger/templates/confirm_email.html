@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Blog | Sign-Up
+Blogit | Confirm Email
 {% endblock title %}
 {% block content %}
     
@@ -16,46 +16,23 @@ Blog | Sign-Up
       <div class="container">
         <div class="row mb-4">
           <div class="col-md-6">
-            <h1 style="text-align: center;">Sign-Up</h1>
+            <h1 style="text-align: center;">Confirm Your Email</h1>
           </div>
         </div>
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
             
-            <form action="#" method="post">
+            <form action="" method="post">
+                  {% csrf_token %}
                   <div class="row">
                     <div class="col-md-12 form-group">
-                      <label for="name">First Name</label>
-                      <input type="text" id="firstname" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="name">Last Name</label>
-                        <input type="text" id="lastname" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="name">Email-id</label>
-                        <input type="text" id="email" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="name">Username</label>
-                        <input type="text" id="name" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                      <label for="phone">Password</label>
-                      <input type="text" id="password" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="phone">Confirm Password</label>
-                        <input type="text" id="confirmpassword" class="form-control ">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="phone">Enter confirmation code sent to Email</label>
-                        <input type="text" id="confirmcode" class="form-control ">
+                        <label for="phone">Enter verification code sent to {{ email }}</label>
+                        <input type="text" name = "token" id="confirmcode" class="form-control ">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 form-group">
-                      <input type="submit" value="Sign-Up" class="btn btn-primary">
+                      <input type="submit" value="Verify Email" class="btn btn-primary">
                     </div>
                   </div>
                 </form>

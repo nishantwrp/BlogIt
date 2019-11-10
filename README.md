@@ -1,0 +1,4 @@
+Technologies Used
+
+- Django
+- Sendgrid
