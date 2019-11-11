@@ -77,3 +77,13 @@
 </script>
 {% endif %}
 
+{% if toast_message == 'invalid_code' %}
+<script>
+      iziToast.show({
+        title: "Error",
+        message: "Invalid email verification code",
+        color: "red",
+        position: "bottomCenter"
+      });
+</script>
+{% endif %}

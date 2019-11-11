@@ -90,6 +90,6 @@ class registerForm(forms.Form):
 
 class emailVerificationForm(forms.Form):
     token = forms.CharField(max_length=10)
-    
 
-
+    def verify_email(self, user):
+        email_verification_token.objects.filter(user=user).delete()
