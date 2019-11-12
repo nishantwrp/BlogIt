@@ -32,3 +32,27 @@ def is_authenticated(request, context):
         return True
     context['is_authenticated'] = False
     return False
+
+def get_all_categories(context):
+    context['categories'] = category.objects.all
+
+def give_vote(blog, user, liked):
+    has_voted = vote.objects.filter(blog=blog, user=user)
+
+    if has_voted:
+        return False
+    else:
+        vote.objects.create(blog=blog, user=user, liked=liked)
+        return True
+
+def get_like_percentage(blog, context):
+    all_votes = vote.objects.filter(blog=blog)
+    liked = vote.objects.filter(blog=blog, liked=True)
+    disliked = vote.objects.filter(blog=blog, liked=False)
+    if all_votes:
+        context['percentage'] = (len(liked)/len(all_votes))*100
+    else:
+        context['percentage'] = 100
+
+def get_all_blogs(context):
+    context['blogs'] = blog.objects.all

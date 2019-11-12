@@ -87,3 +87,47 @@
       });
 </script>
 {% endif %}
+
+{% if toast_message == 'fill_all_the_details_correctly' %}
+<script>
+      iziToast.show({
+        title: "Error",
+        message: "Please fill all the details correctly",
+        color: "red",
+        position: "bottomCenter"
+      });
+</script>
+{% endif %}
+
+{% if toast_message == 'should_be_logged_in' %}
+<script>
+      iziToast.show({
+        title: "Error",
+        message: "You should be logged in to vote",
+        color: "red",
+        position: "bottomCenter"
+      });
+</script>
+{% endif %}
+
+{% if toast_message == 'already_voted' %}
+<script>
+      iziToast.show({
+        title: "Error",
+        message: "You have already voted for this blog",
+        color: "red",
+        position: "bottomCenter"
+      });
+</script>
+{% endif %}
+
+{% if toast_message == 'vote_recorded' %}
+<script>
+      iziToast.show({
+        title: "Success",
+        message: "Vote Recorded",
+        color: "green",
+        position: "bottomCenter"
+      });
+</script>
+{% endif %}

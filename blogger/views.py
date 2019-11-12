@@ -4,11 +4,15 @@ from .forms import *
 from .sql import *
 from .models import *
 from .utils import *
+from datetime import datetime
 
 # Create your views here.
 
 def indexView(request):
     context = {}
+
+    get_all_categories(context)
+    get_all_blogs(context)
 
     if is_authenticated(request, context):
         is_verified(request.user, context)
@@ -16,6 +20,8 @@ def indexView(request):
 
 def loginView(request):
     context = {}
+
+    get_all_categories(context)
 
     if is_authenticated(request, context):
         return render(request, 'redirect_confirm.html', context)
@@ -34,6 +40,8 @@ def loginView(request):
 
 def registerView(request):
     context = {}
+
+    get_all_categories(context)
 
     if is_authenticated(request, context):
         return render(request, 'redirect_confirm.html', context)
@@ -67,6 +75,8 @@ def registerView(request):
 
 def confirmEmailView(request):
     context = {}
+
+    get_all_categories(context)
 
     if not is_authenticated(request, context):
         return render(request, 'redirect_home.html', context)
@@ -103,6 +113,110 @@ def logoutView(request):
         logout(request)
     return render(request, 'redirect_home.html', context)
 
+def createBlogView(request):
+    context = {}
+
+    get_all_categories(context)
+
+    if not ((is_authenticated(request, context)) and (is_verified(request.user, context))):
+        return render(request, 'redirect_login.html', context)
+
+    if request.method == 'POST':
+        data = request.POST
+        title = data['title']
+        description = data['description']
+        tag = data['tag']
+        image = data['image']
+        content = data['content']
+        if (title == "") or (description == "") or (tag == "") or (image == "") or (content == ""):
+            context['toast_message'] = 'fill_all_the_details_correctly'
+        else:
+            blog_obj = blog.objects.create(author=request.user, title=title, date_created=datetime.now(), description=description, tag=tag, image=image, content=content)
+            # Mysql Query
+            query = "select * from blogger_category where name='{}'".format(tag)
+            result = execute_sql_query(query)
+
+            # Django Query 
+            # result = category.objects.filter(name=tag)
+
+            if len(result) == 0:
+                category.objects.create(name=tag, count=1)
+            else:
+                obj = category.objects.get(name=tag)
+                obj.count += 1
+                obj.save()
+            
+            context['blog_id'] = blog_obj.id
+            return render(request, 'redirect_blog.html', context)
+            
+    return render(request, 'createblog.html', context)
+
+def blogView(request, num):
+    context = {}
+
+    get_all_categories(context)
+
+    # Mysql Query
+    query = "select * from blogger_blog where id={}".format(num)
+    result = execute_sql_query(query)
+
+    # Django Query
+    # result = blog.objects.filter(id=num)
+
+    if len(result) == 0:
+        return render(request, 'redirect_home.html', context)
+
+    if is_authenticated(request, context):
+        is_verified(request.user, context)
+
+    try:
+        if request.GET['vote'] == 'like':
+            if not request.user.is_authenticated:
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_err.html', context)
+            if give_vote(blog.objects.get(id=num), request.user, 1):
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_success.html', context)
+            else:
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_error.html', context)
+        elif request.GET['vote'] == 'dislike':
+            if not request.user.is_authenticated:
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_err.html', context)
+            if give_vote(blog.objects.get(id=num), request.user, 0):
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_success.html', context)
+            else:
+                context['blog_id'] = num
+                return render(request, 'redirect_blog_error.html', context)
+    except:
+        pass
+
+    try:
+        if request.GET['err'] == 'true':
+            context['toast_message'] = 'should_be_logged_in'
+    except:
+        pass
+
+    try:
+        if request.GET['error'] == 'true':
+            context['toast_message'] = 'already_voted'
+    except:
+        pass
+
+    try:
+        if request.GET['success'] == 'true':
+            context['toast_message'] = 'vote_recorded'
+    except:
+        pass
+    
+    context['blog'] = blog.objects.get(id=num)
+    
+    get_like_percentage(blog.objects.get(id=num), context)
+
+    return render(request,'blog.html', context)
+
 def aboutView(request):
     return render(request,'about.html')
 
@@ -111,9 +225,3 @@ def categoryView(request):
 
 def contactView(request):
     return render(request,'contact.html')
-
-def blogSingleView(request):
-    return render(request,'blog-single.html')
-
-def createBlogView(request):
-    return render(request,'createblog.html')

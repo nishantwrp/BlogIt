@@ -7,9 +7,9 @@ urlpatterns = [
     path('register/', registerView, name='register'),
     path('logout/', logoutView, name='logout'),
     path('confirm/', confirmEmailView, name='confirm'),
+    path('create/', createBlogView, name='createblog'),
+    path('blog/<int:num>/', blogView, name='blog'),
     path('category/', categoryView, name='category'),
     path('contact/', contactView, name='contact'),
     path('about/', aboutView, name='about'),
-    path('blogsingle/', blogSingleView, name='blog-single'),
-    path('createblog/', createBlogView, name='createblog'),
 ]
