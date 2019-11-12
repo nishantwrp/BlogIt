@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Blogit | Register
+Blogit | Create Blog
 {% endblock title %}
 {% block content %}
     
@@ -16,7 +16,7 @@ Blogit | Register
       <div class="container">
         <div class="row mb-4">
           <div class="col-md-6">
-            <h1 style="text-align: center;">Create an account</h1>
+            <h1 style="text-align: center;">Create your Blog :-</h1>
           </div>
         </div>
         <div class="row blog-entries">
@@ -26,17 +26,22 @@ Blogit | Register
                   {% csrf_token %}
                   <div class="row">
                     <div class="col-md-12 form-group">
-                      <label for="name">First Name</label>
-                      <input type="text" name = "first_name" id="firstname" class="form-control ">
+                      <label for="name">Title of blog</label>
+                      <input type="text" name = "blog_title" id="blogtitle" class="form-control ">
                     </div>
                     <div class="col-md-12 form-group">
-                        <label for="name">Last Name</label>
-                        <input type="text" name = "last_name" id="lastname" class="form-control ">
+                        <label for="name">Description</label>
+                        <input type="text" name = "description" id="description" class="form-control ">
                     </div>
                     <div class="col-md-12 form-group">
-                        <label for="name">Email</label>
-                        <input type="text" name = "email" id="email" class="form-control ">
+                        <label for="name">Tag</label>
+                        <input type="text" name = "tag" id="tag" class="form-control ">
                     </div>
+                    <div class="col-md-12 form-group">
+                        <label for="name">Link of Image (Optional)</label>
+                        <input type="text" name = "imagelink" id="imagelink" class="form-control ">
+                    </div>
+                    <!--
                     <div class="col-md-12 form-group">
                         <label for="name">Username</label>
                         <input type="text" name = "username" id="name" class="form-control ">
@@ -49,10 +54,17 @@ Blogit | Register
                         <label for="phone">Confirm Password</label>
                         <input type="password" name = "confirm_password" id="confirmpassword" class="form-control ">
                     </div>
+                -->
                   </div>
                   <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="message">Write Blog here (Write in Markdown)</label>
+                            <textarea name="message" id="message" class="form-control " cols="30" rows="15"></textarea>
+                        </div>
+                    </div>
+                  <div class="row">
                     <div class="col-md-6 form-group">
-                      <input type="submit" value="Register" class="btn btn-primary">
+                      <input type="submit" value="Submit" class="btn btn-primary">
                     </div>
                   </div>
                 </form>

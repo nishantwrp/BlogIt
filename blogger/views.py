@@ -114,3 +114,6 @@ def contactView(request):
 
 def blogSingleView(request):
     return render(request,'blog-single.html')
+
+def createBlogView(request):
+    return render(request,'createblog.html')
