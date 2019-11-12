@@ -11,4 +11,5 @@ urlpatterns = [
     path('contact/', contactView, name='contact'),
     path('about/', aboutView, name='about'),
     path('blogsingle/', blogSingleView, name='blog-single'),
+    path('createblog/', createBlogView, name='createblog'),
 ]
