@@ -7,9 +7,10 @@
         </div>
         <div class="col-3 search-top">
           <!-- <a href="#"><span class="fa fa-search"></span></a> -->
-          <form action="#" class="search-top-form">
+          <form action="/search/" method="POST" class="search-top-form">
+            {% csrf_token %}
             <span class="icon fa fa-search"></span>
-            <input type="text" id="s" placeholder="Type keyword to search...">
+            <input type="text" name="search_text" id="s" placeholder="Type keyword to search...">
           </form>
         </div>
       </div>
@@ -36,7 +37,7 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="category.html" id="dropdown04" data-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
             {% for category in categories %}

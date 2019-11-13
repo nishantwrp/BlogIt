@@ -13,6 +13,7 @@ def indexView(request):
 
     get_all_categories(context)
     get_all_blogs(context)
+    get_top_three_blogs(context)
 
     if is_authenticated(request, context):
         is_verified(request.user, context)
@@ -217,11 +218,47 @@ def blogView(request, num):
 
     return render(request,'blog.html', context)
 
+def categoryView(request, num):
+    context = {}
+
+    get_all_categories(context)
+
+    # Mysql Query 
+    query = "select * from blogger_category where id={}".format(num)
+    result = execute_sql_query(query)
+
+    # Django Query
+    # result = category.objects.filter(id=num)
+
+    if len(result) == 0:
+        return render(request, 'redirect_home.html', context)
+
+    get_category_blogs(category.objects.get(id=num).name, context)
+
+    if is_authenticated(request, context):
+        is_verified(request.user, context)
+
+    return render(request, 'category.html', context)
+
+def searchView(request):
+    context = {}
+
+    get_all_categories(context)
+
+    if request.method == 'POST':
+        search_query = request.POST['search_text']
+        context['search_query'] = search_query
+        get_search_results(search_query, context)
+    else:
+        return render(request, 'redirect_home.html', context)
+
+    if is_authenticated(request, context):
+        is_verified(request.user, context)
+
+    return render(request, 'search.html', context)
+
 def aboutView(request):
     return render(request,'about.html')
-
-def categoryView(request):
-    return render(request,'category.html')
 
 def contactView(request):
     return render(request,'contact.html')

@@ -9,7 +9,7 @@ urlpatterns = [
     path('confirm/', confirmEmailView, name='confirm'),
     path('create/', createBlogView, name='createblog'),
     path('blog/<int:num>/', blogView, name='blog'),
-    path('category/', categoryView, name='category'),
-    path('contact/', contactView, name='contact'),
+    path('category/<int:num>/', categoryView, name='category'),
+    path('search/', searchView, name='search'),
     path('about/', aboutView, name='about'),
 ]

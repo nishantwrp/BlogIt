@@ -56,3 +56,13 @@ def get_like_percentage(blog, context):
 
 def get_all_blogs(context):
     context['blogs'] = blog.objects.all
+
+def get_category_blogs(category_name, context):
+    context['blogs'] = blog.objects.filter(tag=category_name)
+    context['category'] = category_name
+
+def get_search_results(search_text, context):
+    context['blogs'] = blog.objects.filter(title__icontains=search_text)
+
+def get_top_three_blogs(context):
+    context['top_three'] = blog.objects.all().order_by('-date_created')[0:3]
