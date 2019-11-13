@@ -1,28 +1,13 @@
 {% load static %}
 <div class="col-md-12 col-lg-4 sidebar">
-    <div class="sidebar-box search-form-wrap">
-      <form action="#" class="search-form">
-        <div class="form-group">
-          <span class="icon fa fa-search"></span>
-          <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-        </div>
-      </form>
-    </div>
     <!-- END sidebar-box -->
     <div class="sidebar-box">
       <div class="bio text-center">
-        <img src="{% static 'images/person_1.jpg' %}" alt="Image Placeholder" class="img-fluid">
         <div class="bio-body">
-          <h2>David Craig</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus
-            excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-          <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
+          <h2>{{ blog.author.first_name }} {{ blog.author.last_name }}</h2>
+          <p>{{ blog.description }}</p>
           <p class="social">
-            <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-            <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-            <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-            <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-            <a href="#" class="p-2"><span class="fa fa-envelope"></span></a>
+            <a href="mailto:{{ blog.author.email }}" class="p-2"><span class="fa fa-envelope"></span></a>
           </p>
         </div>
       </div>
@@ -30,21 +15,21 @@
     <!-- END sidebar-box -->
     <div class="sidebar-box border text-center" >
         <p class="social">
-            <h3 class="heading" style="margin-bottom: -15px;">ChatBox<a href="#" class="p-2"><span class="fa fa-comment"></span></a></h3>
+            <h3 class="heading" style="margin-bottom: -15px;">Chat Room<a href="#" class="p-2"><span class="fa fa-comment"></span></a></h3>
         </p>
-        <div style="max-height:350px;overflow: auto;">
+        <div style="height:350px;max-height:350px;overflow: auto;">
         dasjdbakdbasdbajskdbajkbda<br>
         sduagdjahduagdsavdjasvdjasbdasduagdjahduagdsavdjasvddasjasbd<br>
         asduagdjahduagdsavdjasvdjasbd<br>
         asduagdjahduagdsavdjasvdjasbd<br>
+        {% comment %} asduagdjahduagdsavdjasvdjasbd<br>
         asduagdjahduagdsavdjasvdjasbd<br>
         asduagdjahduagdsavdjasvdjasbd<br>
-        asduagdjahduagdsavdjasvdjasbd<br>
         asduagdjahduagdsavdjasvddasjasbd<br>
         asduagdjahduagdsavdjasvddasjasbd<br>
         asduagdjahduagdsavdjasvddasjasbd<br>
         asduagdjahduagdsavdjasvddasjasbd<br>
-        asduagdjahduagdsavdjasvddasjasbd<br>
+        asduagdjahduagdsavdjasvddasjasbd<br> {% endcomment %}
       </div>
       <input name="message" placeholder=" Write your Message" type="text" id="message" class="form-control">
       <input type="Post" value="Post" class="btn btn-primary" style="width: 100%;">
@@ -82,18 +67,7 @@
     <div class="sidebar-box">
       <h3 class="heading">Tags</h3>
       <ul class="tags">
-        <li><a href="#">Travel</a></li>
-        <li><a href="#">Adventure</a></li>
-        <li><a href="#">Food</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Freelancing</a></li>
-        <li><a href="#">Travel</a></li>
-        <li><a href="#">Adventure</a></li>
-        <li><a href="#">Food</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Freelancing</a></li>
+        <li><a href="#">{{ blog.tag }}</a></li>
       </ul>
     </div>
     
