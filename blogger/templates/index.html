@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Blogit - Home 
+Blogit - Home
 {% endblock title %}
 
 {% block content %}
@@ -16,7 +16,7 @@ Blogit - Home
         <div class="col-md-12">
 
           <div class="owl-carousel owl-theme home-slider">
-          {% for blog in top_three %}
+            {% for blog in top_three %}
             <div>
               <a href="/blog/{{ blog.id }}/" class="a-block d-flex align-items-center height-lg"
                 style="background-image: url('{{ blog.image }}'); ">
@@ -25,7 +25,7 @@ Blogit - Home
                   <div class="post-meta">
 
                     <span class="author mr-2">{{ blog.author.first_name }} {{ blog.author.last_name }}</span>&bullet;
-                    <span class="mr-2">{{ blog.date_created }} 
+                    <span class="mr-2">{{ blog.date_created }}
                   </div>
                   <h3>{{ blog.title }}</h3>
                   <p>{{ blog.description }}</p>
@@ -71,11 +71,7 @@ Blogit - Home
           </div>
         </div>
 
-        <!-- END main-content -->
-
         {% include 'sidebar.html' %}
-
-        
 
       </div>
     </div>

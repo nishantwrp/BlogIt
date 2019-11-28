@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from django.contrib.auth import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^oauth-login/$', views.LoginView.as_view(), name='oauth-login'),
+    url(r'^oauth-logout/$', views.LogoutView.as_view(), name='oauth-logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     path('', include('blogger.urls'))
 ]
