@@ -145,6 +145,8 @@ STATIC_URL = '/static/'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
+DATABASES['default']['CONN_MAX_AGE'] = 60
+
 ASGI_APPLICATION = 'blogit.routing.application'
 
 CHANNEL_LAYERS = {
