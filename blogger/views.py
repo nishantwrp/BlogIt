@@ -133,12 +133,9 @@ def createBlogView(request):
             context['toast_message'] = 'fill_all_the_details_correctly'
         else:
             blog_obj = blog.objects.create(author=request.user, title=title, date_created=datetime.now(), description=description, tag=tag, image=image, content=content)
-            # Mysql Query
-            query = "select * from blogger_category where name='{}'".format(tag)
-            result = execute_sql_query(query)
 
             # Django Query 
-            # result = category.objects.filter(name=tag)
+            result = category.objects.filter(name=tag)
 
             if len(result) == 0:
                 category.objects.create(name=tag, count=1)
@@ -157,12 +154,8 @@ def blogView(request, num):
 
     get_all_categories(context)
 
-    # Mysql Query
-    query = "select * from blogger_blog where id={}".format(num)
-    result = execute_sql_query(query)
-
     # Django Query
-    # result = blog.objects.filter(id=num)
+    result = blog.objects.filter(id=num)
 
     if len(result) == 0:
         return render(request, 'redirect_home.html', context)
@@ -223,12 +216,8 @@ def categoryView(request, num):
 
     get_all_categories(context)
 
-    # Mysql Query 
-    query = "select * from blogger_category where id={}".format(num)
-    result = execute_sql_query(query)
-
     # Django Query
-    # result = category.objects.filter(id=num)
+    result = category.objects.filter(id=num)
 
     if len(result) == 0:
         return render(request, 'redirect_home.html', context)

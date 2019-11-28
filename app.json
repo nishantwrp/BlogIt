@@ -8,6 +8,9 @@
     }
   ],
   "env": {
+    "SENDGRID_API_KEY": {},
+    "SOCIAL_AUTH_FACEBOOK_KEY": {},
+    "SOCIAL_AUTH_FACEBOOK_SECRET": {}
   },
   "formation": {
     "web": {
