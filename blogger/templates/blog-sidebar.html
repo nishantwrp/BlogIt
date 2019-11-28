@@ -22,7 +22,7 @@
     </div>
     <input style="display:none;" id="current-user" value="{{ user }}">
     <input name="message" placeholder=" Write your Message" type="text" id="message" class="form-control">
-    <input type="Post" value="Post" id="send-msg-button" class="btn btn-primary" style="width: 100%;">
+    <input type="button" value="Post" id="send-msg-button" class="btn btn-primary" style="width: 100%;">
   </div>
   <!-- END sidebar-box -->
 
@@ -36,9 +36,10 @@
 </div>
 <script>
   var roomName = {{ blog.id }};
+  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 
   var chatSocket = new WebSocket(
-    'wss://' + window.location.host +
+    ws_scheme + '://' + window.location.host +
     '/ws/chat/' + roomName + '/');
 
   chatSocket.onmessage = function (e) {

@@ -88,13 +88,9 @@ def confirmEmailView(request):
     if request.method == 'POST':
         confirm_form = emailVerificationForm(request.POST)
         if confirm_form.is_valid():
-            # Mysql Query
-            query = "select * from blogger_email_verification_token where user_id='{}'".format(request.user.id)
-            result = execute_sql_query(query)
-            correct_token = result[0][1]
 
             # Django Query
-            # correct_token = email_verification_token.objects.get(user=request.user).token
+            correct_token = email_verification_token.objects.get(user=request.user).token
 
             if correct_token == confirm_form.cleaned_data['token']:
                 confirm_form.verify_email(request.user)
