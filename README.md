@@ -5,3 +5,6 @@ Technologies Used
 - Email Validator
 - JS Markdown Editor
 - Django Markup Library
+- Django Social Auth
+- Django Channels
+- Redis

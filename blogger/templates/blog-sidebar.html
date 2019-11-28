@@ -20,7 +20,7 @@
     </p>
     <div style="height:350px;max-height:350px;overflow: auto;" id="chat-log">
     </div>
-    <input style = "display:none;" id = "current-user" value = "{{ user }}">
+    <input style="display:none;" id="current-user" value="{{ user }}">
     <input name="message" placeholder=" Write your Message" type="text" id="message" class="form-control">
     <input type="Post" value="Post" id="send-msg-button" class="btn btn-primary" style="width: 100%;">
   </div>
@@ -45,7 +45,7 @@
     var data = JSON.parse(e.data);
     var message = data['message'];
     var user = data['user']
-    document.getElementById('chat-log').innerHTML +=  '<span style = "color: black">' + user + '</span>: ' + message + '<br>';
+    document.getElementById('chat-log').innerHTML += '<span style = "color: black">' + user + '</span>: ' + message + '<br>';
   };
 
   chatSocket.onclose = function (e) {
