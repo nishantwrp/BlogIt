@@ -1,0 +1,133 @@
+{% comment %} This file contains all the toast messages used {% endcomment %}
+
+{% if toast_message == 'invalid_credentials' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Invalid Credentials",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'fill_all_the_details' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Please fill all the details",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'passwords_dont_match' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Passwords Don't Match",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'invalid_password' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Password should have atleast six characters",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'invalid_email' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Enter a valid email",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'username_already_exists' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "This username already exists",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'email_already_exists' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "This email is already associated with an account",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'invalid_code' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Invalid email verification code",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'fill_all_the_details_correctly' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "Please fill all the details correctly",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'should_be_logged_in' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "You should be logged in to vote",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'already_voted' %}
+<script>
+  iziToast.show({
+    title: "Error",
+    message: "You have already voted for this blog",
+    color: "red",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}
+
+{% if toast_message == 'vote_recorded' %}
+<script>
+  iziToast.show({
+    title: "Success",
+    message: "Vote Recorded",
+    color: "green",
+    position: "bottomCenter"
+  });
+</script>
+{% endif %}

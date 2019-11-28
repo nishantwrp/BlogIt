@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markup_tags %}
+
+{% block title %}
+Blogit | {{ blog.title }}
+{% endblock title %}
+{% block content %}
+
+
+<div class="wrap">
+
+  {% include 'header.html' %}
+
+
+  <section class="site-section py-lg">
+    <div class="container">
+
+      <div class="row blog-entries element-animate">
+
+        <div class="col-md-12 col-lg-8 main-content">
+          <img src="{{ blog.image }}" alt="Image" class="img-fluid mb-5">
+          <div class="post-meta">
+            <span class="mr-2" style="color:black">{{ blog.date_created }} </span> &bullet;
+            <span class="mr-2" style="color:black">Liked by {{ percentage }}% of viewers
+          </div>
+          <h1 class="mb-4">{{ blog.title }}</h1>
+
+          <div class="post-content-body">
+            {{ blog.content|apply_markup:"markdown" }}
+          </div>
+          <div class="pt-5">
+            <a class="category mb-5" href="?vote=like">Like</a> <a class="category mb-5"
+              href="?vote=dislike">Dislike</a>
+          </div>
+        </div>
+
+        {% include 'blog-sidebar.html' %}
+
+      </div>
+    </div>
+  </section>
+  <!-- END section -->
+
+  {% include 'footer.html' %}
+
+</div>
+
+{% include 'scripts.html' %}
+
+{% endblock content %}

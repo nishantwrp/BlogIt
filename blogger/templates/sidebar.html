@@ -1,0 +1,10 @@
+{% load static %}
+<div class="col-md-12 col-lg-4 sidebar">
+  <div class="sidebar-box">
+    <h3 class="heading">Categories</h3>
+    <ul class="categories">
+      {% for category in categories %}
+      <li><a href="/category/{{ category.id }}/">{{ category.name }} <span>({{ category.count }})</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>

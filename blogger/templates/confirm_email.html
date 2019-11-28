@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Blogit - Login
+Blogit | Confirm Email
 {% endblock title %}
 {% block content %}
 
@@ -11,43 +11,35 @@ Blogit - Login
 
   {% include 'header.html' %}
 
+
   <section class="site-section">
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6">
-          <h1 style="text-align: center;">Enter your credentials</h1>
+          <h1 style="text-align: center;">Confirm Your Email</h1>
         </div>
       </div>
       <div class="row blog-entries">
         <div class="col-md-12 col-lg-8 main-content">
+
           <form action="" method="post">
             {% csrf_token %}
             <div class="row">
               <div class="col-md-12 form-group">
-                <label for="name">Username</label>
-                <input name="username" type="text" id="name" class="form-control">
-              </div>
-              <div class="col-md-12 form-group">
-                <label for="phone">Password</label>
-                <input name="password" type="password" id="password" class="form-control">
+                <label for="phone">Enter verification code sent to {{ email }}</label>
+                <input type="text" name="token" id="confirmcode" class="form-control ">
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="submit" value="Login" class="btn btn-primary">
+                <input type="submit" value="Verify Email" class="btn btn-primary">
               </div>
             </div>
           </form>
-          <div class="row">
-            <div class="col-md-6 form-group">
-              <a href="{% url 'social:begin' 'facebook' %}"> <input type="submit" value="Login using facebook"
-                  class="btn btn-primary"></a>
-            </div>
-          </div>
         </div>
 
         {% include 'sidebar.html' %}
-
+        
       </div>
     </div>
   </section>

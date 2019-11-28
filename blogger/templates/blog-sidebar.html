@@ -1,0 +1,65 @@
+{% load static %}
+<div class="col-md-12 col-lg-4 sidebar">
+  <!-- END sidebar-box -->
+  <div class="sidebar-box">
+    <div class="bio text-center">
+      <div class="bio-body">
+        <h2>{{ blog.author.first_name }} {{ blog.author.last_name }}</h2>
+        <p>{{ blog.description }}</p>
+        <p class="social">
+          <a href="mailto:{{ blog.author.email }}" class="p-2"><span class="fa fa-envelope"></span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- END sidebar-box -->
+  <div class="sidebar-box border text-center">
+    <p class="social">
+      <h3 class="heading" style="margin-bottom: -15px;">Chat Room<a href="#" class="p-2"><span
+            class="fa fa-comment"></span></a></h3>
+    </p>
+    <div style="height:350px;max-height:350px;overflow: auto;" id="chat-log">
+    </div>
+    <input style="display:none;" id="current-user" value="{{ user }}">
+    <input name="message" placeholder=" Write your Message" type="text" id="message" class="form-control">
+    <input type="Post" value="Post" id="send-msg-button" class="btn btn-primary" style="width: 100%;">
+  </div>
+  <!-- END sidebar-box -->
+
+  <div class="sidebar-box">
+    <h3 class="heading">Tags</h3>
+    <ul class="tags">
+      <li><a href="#">{{ blog.tag }}</a></li>
+    </ul>
+  </div>
+
+</div>
+<script>
+  var roomName = {{ blog.id }};
+
+  var chatSocket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws/chat/' + roomName + '/');
+
+  chatSocket.onmessage = function (e) {
+    var data = JSON.parse(e.data);
+    var message = data['message'];
+    var user = data['user']
+    document.getElementById('chat-log').innerHTML += '<span style = "color: black">' + user + '</span>: ' + message + '<br>';
+  };
+
+  chatSocket.onclose = function (e) {
+    console.error('Chat socket closed unexpectedly');
+  };
+
+  document.querySelector('#send-msg-button').onclick = function (e) {
+    var msgDom = document.querySelector('#message');
+    var msg = msgDom.value;
+    var currentUser = document.querySelector('#current-user').value;
+    chatSocket.send(JSON.stringify({
+      'message': msg,
+      'user': currentUser
+    }));
+    msgDom.value = '';
+  };
+</script>
