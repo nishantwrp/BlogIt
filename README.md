@@ -7,4 +7,5 @@ Technologies Used
 - Django Markup Library
 - Django Social Auth
 - Django Channels
-- Redis
+- Redis 
+- Websockets
